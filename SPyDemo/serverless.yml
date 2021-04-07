@@ -1,0 +1,32 @@
+service: LambdaSpyDemo
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  DataQuery:
+    handler: handler.data_query
+    timeout: 30
+    events:
+      - http:
+          path: spyquery
+          method: get
+          request:
+            parameters:
+              querystrings:
+                start: true
+                end: true
+                search-params: true
+                key: true
+                secret: true
+
+                
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    zip: true

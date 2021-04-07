@@ -1,0 +1,2 @@
+seeq
+boto3
